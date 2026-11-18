@@ -3,5 +3,9 @@ edition = "2024"
 name = "app_root"
 version = "0.1.0"
 
+[features]
+default = ["dioxus/web"]
+
 [dependencies]
+dioxus.workspace = true
 hosh_hosh_ui_dioxus.workspace = true
