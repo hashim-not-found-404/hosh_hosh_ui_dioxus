@@ -1,0 +1,8 @@
+[package]
+edition = "2024"
+name = "hosh_hosh_ui_dioxus"
+version = "0.1.0"
+
+[dependencies]
+dioxus.workspace = true
+style_simple.workspace = true

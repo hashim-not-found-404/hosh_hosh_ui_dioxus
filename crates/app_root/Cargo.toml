@@ -1,0 +1,7 @@
+[package]
+edition = "2024"
+name = "app_root"
+version = "0.1.0"
+
+[dependencies]
+hosh_hosh_ui_dioxus.workspace = true
