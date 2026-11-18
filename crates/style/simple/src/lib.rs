@@ -21,7 +21,7 @@ pub fn PrimaryButton(
             class: "hhs-button hhs-button--primary",
             r#type: "button",
             disabled: disabled,
-            onclick: move |e| onclick.call(e),
+            onclick: onclick,
             span { class: "hhs-button__label", "{label}" }
         }
     }
