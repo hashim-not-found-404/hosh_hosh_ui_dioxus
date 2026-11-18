@@ -1,0 +1,165 @@
+/* ============================================================================
+ * hosh_hosh_ui · simple style preset
+ * ============================================================================
+ *
+ * Tokens live on :root. Every component reads its colors from those
+ * variables, so a consumer can re-theme the entire library by
+ * overriding any subset of them on any ancestor element:
+ *
+ *     <div style="--hhs-brand: #ff00aa; --hhs-bg: #000;">
+ *         <PrimaryButton label="Neon" />
+ *     </div>
+ *
+ * Naming follows BEM:
+ *
+ *     .hhs-block                block (shared structure)
+ *     .hhs-block__element       element (a part of the block)
+ *     .hhs-block--modifier      modifier (a visual variant)
+ *     .hhs-block.is-state       state (when :pseudo won't cut it)
+ *
+ * Blocks in this file:
+ *
+ *     .hhs-button               + modifiers: --primary
+ *                               (future: --secondary, --tertiary,
+ *                                --danger, --ghost)
+ *
+ * Add new blocks below. Keep each block's base rule and all its
+ * modifiers grouped together. Use CSS custom properties for any
+ * value a consumer might want to override per-instance.
+ * ============================================================================ */
+
+
+/* ── Tokens ────────────────────────────────────────────────────────────── */
+
+:root {
+    /* Brand accents */
+    --hhs-brand:            #6eafd2;
+    --hhs-on-brand:         #161a22;
+    --hhs-brand-alt:        #c89b64;
+    --hhs-danger:           #cd6960;
+    --hhs-success:          #7dbe91;
+
+    /* Surfaces */
+    --hhs-bg:               #0e1016;
+    --hhs-surface:          #14171f;
+    --hhs-surface-2:        #1c202a;
+
+    /* Foreground */
+    --hhs-text:             #dce2ea;
+    --hhs-text-muted:       #828a98;
+    --hhs-border:           #343a48;
+
+    /* Typography */
+    --hhs-font-mono:        ui-monospace, "SFMono-Regular", "SF Mono",
+                            Menlo, Consolas, "Liberation Mono", monospace;
+
+    /* Geometry */
+    --hhs-radius-sm:        4px;
+    --hhs-radius-md:        8px;
+
+    /* Motion */
+    --hhs-dur-fast:         0.08s;
+    --hhs-dur-normal:       0.15s;
+    --hhs-ease-out:         cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+/* ── Block · button ────────────────────────────────────────────────────── */
+
+.hhs-button {
+    /* Layout */
+    position:               relative;
+    display:                inline-flex;
+    align-items:            center;
+    justify-content:        center;
+    min-height:             40px;
+    padding:                0 1.25rem;
+
+    /* Typography */
+    font-family:            var(--hhs-font-mono);
+    font-size:              0.875rem;
+    font-weight:            500;
+    letter-spacing:         0.04em;
+    text-transform:         uppercase;
+    white-space:            nowrap;
+
+    /* Reset — every modifier fills in colors + shape */
+    border:                 1px solid transparent;
+    border-radius:          0;
+    background:             transparent;
+    color:                  inherit;
+
+    /* Interaction */
+    cursor:                 pointer;
+    user-select:            none;
+    transition:
+        box-shadow          var(--hhs-dur-normal) var(--hhs-ease-out),
+        transform           var(--hhs-dur-fast)   var(--hhs-ease-out),
+        filter              var(--hhs-dur-normal) var(--hhs-ease-out);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.hhs-button:focus-visible {
+    outline:                2px solid var(--hhs-brand);
+    outline-offset:         3px;
+}
+
+.hhs-button:disabled {
+    opacity:                0.35;
+    cursor:                 not-allowed;
+    box-shadow:             none;
+    filter:                 none;
+    pointer-events:         none;
+}
+
+.hhs-button__label {
+    /* Reserved for when buttons gain icons or badges. */
+    display:                inline-block;
+}
+
+
+/* ── Block · button · modifier --primary ──────────────────────────────── */
+
+.hhs-button--primary {
+    color:                  var(--hhs-on-brand);
+    background:             var(--hhs-brand);
+    border-color:           var(--hhs-brand);
+
+    /* Signature octagonal corners: cut top-left and bottom-right. */
+    clip-path: polygon(
+        10px                    0,
+        100%                    0,
+        100%                    calc(100% - 10px),
+        calc(100% - 10px)       100%,
+        0                       100%,
+        0                       10px
+    );
+}
+
+.hhs-button--primary:hover:not(:disabled) {
+    box-shadow:
+        0 0 10px            var(--hhs-brand),
+        0 0 24px            rgb(110 175 210 / 0.45);
+    filter:                 brightness(1.05);
+    text-shadow:
+        -0.5px 0            rgb(255  60 100 / 0.55),
+         0.5px 0            rgb( 40 220 255 / 0.55);
+}
+
+.hhs-button--primary:active:not(:disabled) {
+    animation:              hhs-glitch-press 0.16s linear;
+    box-shadow:
+        0 0  6px            var(--hhs-brand),
+        0 0 16px            rgb(110 175 210 / 0.30);
+}
+
+
+/* ── Animations ────────────────────────────────────────────────────────── */
+
+@keyframes hhs-glitch-press {
+    0%   { transform: translate( 0,   1px); }
+    25%  { transform: translate(-1px, 1px); }
+    50%  { transform: translate( 1px, 1px); }
+    75%  { transform: translate(-1px, 1px); }
+    100% { transform: translate( 0,   1px); }
+}
