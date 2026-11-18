@@ -1,4 +1,5 @@
 use hosh_hosh_ui_dioxus::dioxus::launch;
+use hosh_hosh_ui_dioxus::style_simple::*;
 use hosh_hosh_ui_dioxus::*;
 
 fn main() {

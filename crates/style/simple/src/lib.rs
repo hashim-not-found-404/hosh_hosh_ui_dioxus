@@ -11,18 +11,14 @@ pub fn StyleInjector() -> Element {
 }
 
 #[component]
-pub fn PrimaryButton(
-    label: String,
-    #[props(default = false)] disabled: bool,
-    #[props(default)] onclick: EventHandler<MouseEvent>,
-) -> Element {
+pub fn PrimaryButton(props: PrimaryButtonProps) -> Element {
     rsx! {
         button {
             class: "hhs-button hhs-button--primary",
             r#type: "button",
-            disabled: disabled,
-            onclick: onclick,
-            span { class: "hhs-button__label", "{label}" }
+            disabled: props.disabled,
+            onclick: props.onclick,
+            span { class: "hhs-button__label", "{props.label}" }
         }
     }
 }

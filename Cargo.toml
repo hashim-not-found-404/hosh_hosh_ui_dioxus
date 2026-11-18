@@ -2,18 +2,18 @@
 members = [
     "crates/app_root",
     "crates/hosh_hosh_ui_dioxus",
+    "crates/interface",
     "crates/prelude",
     "crates/style/simple",
 ]
 resolver = "3"
 
 [workspace.dependencies]
-# internal crates
 hosh_hosh_ui_dioxus.path = "crates/hosh_hosh_ui_dioxus"
+interface.path = "crates/interface"
 prelude.path = "crates/prelude"
 style_simple.path = "crates/style/simple"
 
-# external out the domain
 dioxus = { features = ["router"], version = "0.7.10" }
 
 [profile.dev.package."*"]
