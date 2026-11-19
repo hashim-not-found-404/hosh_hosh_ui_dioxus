@@ -1,7 +1,13 @@
 pub use dioxus;
 pub use dioxus::prelude::*;
 
-pub mod style_simple {
-    pub use style_simple::PrimaryButton;
-    pub use style_simple::StyleInjector;
+macro_rules! export_style {
+    ($name:ident) => {
+        pub mod $name {
+            pub use $name::PrimaryButton;
+            pub use $name::StyleInjector;
+        }
+    };
 }
+
+export_style!(style_simple);
