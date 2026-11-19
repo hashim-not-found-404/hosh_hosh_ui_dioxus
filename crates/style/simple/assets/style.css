@@ -6,20 +6,20 @@
  * variables, so a consumer can re-theme the entire library by
  * overriding any subset of them on any ancestor element:
  *
- *     <div style="--hhs-brand: #ff00aa; --hhs-bg: #000;">
+ *     <div style="--brand: #ff00aa; --bg: #000;">
  *         <PrimaryButton label="Neon" />
  *     </div>
  *
  * Naming follows BEM:
  *
- *     .hhs-block                block (shared structure)
- *     .hhs-block__element       element (a part of the block)
- *     .hhs-block--modifier      modifier (a visual variant)
- *     .hhs-block.is-state       state (when :pseudo won't cut it)
+ *     .block                block (shared structure)
+ *     .block__element       element (a part of the block)
+ *     .block--modifier      modifier (a visual variant)
+ *     .block.is-state       state (when :pseudo won't cut it)
  *
  * Blocks in this file:
  *
- *     .hhs-button               + modifiers: --primary
+ *     .button               + modifiers: --primary
  *                               (future: --secondary, --tertiary,
  *                                --danger, --ghost)
  *
@@ -33,40 +33,40 @@
 
 :root {
     /* Brand accents */
-    --hhs-brand:            #6eafd2;
-    --hhs-on-brand:         #161a22;
-    --hhs-brand-alt:        #c89b64;
-    --hhs-danger:           #cd6960;
-    --hhs-success:          #7dbe91;
+    --brand:            #6eafd2;
+    --on-brand:         #161a22;
+    --brand-alt:        #c89b64;
+    --danger:           #cd6960;
+    --success:          #7dbe91;
 
     /* Surfaces */
-    --hhs-bg:               #0e1016;
-    --hhs-surface:          #14171f;
-    --hhs-surface-2:        #1c202a;
+    --bg:               #0e1016;
+    --surface:          #14171f;
+    --surface-2:        #1c202a;
 
     /* Foreground */
-    --hhs-text:             #dce2ea;
-    --hhs-text-muted:       #828a98;
-    --hhs-border:           #343a48;
+    --text:             #dce2ea;
+    --text-muted:       #828a98;
+    --border:           #343a48;
 
     /* Typography */
-    --hhs-font-mono:        ui-monospace, "SFMono-Regular", "SF Mono",
+    --font-mono:        ui-monospace, "SFMono-Regular", "SF Mono",
                             Menlo, Consolas, "Liberation Mono", monospace;
 
     /* Geometry */
-    --hhs-radius-sm:        4px;
-    --hhs-radius-md:        8px;
+    --radius-sm:        4px;
+    --radius-md:        8px;
 
     /* Motion */
-    --hhs-dur-fast:         0.08s;
-    --hhs-dur-normal:       0.15s;
-    --hhs-ease-out:         cubic-bezier(0.16, 1, 0.3, 1);
+    --dur-fast:         0.08s;
+    --dur-normal:       0.15s;
+    --ease-out:         cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 
 /* ── Block · button ────────────────────────────────────────────────────── */
 
-.hhs-button {
+.button {
     /* Layout */
     position:               relative;
     display:                inline-flex;
@@ -76,7 +76,7 @@
     padding:                0 1.25rem;
 
     /* Typography */
-    font-family:            var(--hhs-font-mono);
+    font-family:            var(--font-mono);
     font-size:              0.875rem;
     font-weight:            500;
     letter-spacing:         0.04em;
@@ -93,18 +93,18 @@
     cursor:                 pointer;
     user-select:            none;
     transition:
-        box-shadow          var(--hhs-dur-normal) var(--hhs-ease-out),
-        transform           var(--hhs-dur-fast)   var(--hhs-ease-out),
-        filter              var(--hhs-dur-normal) var(--hhs-ease-out);
+        box-shadow          var(--dur-normal) var(--ease-out),
+        transform           var(--dur-fast)   var(--ease-out),
+        filter              var(--dur-normal) var(--ease-out);
     -webkit-tap-highlight-color: transparent;
 }
 
-.hhs-button:focus-visible {
-    outline:                2px solid var(--hhs-brand);
+.button:focus-visible {
+    outline:                2px solid var(--brand);
     outline-offset:         3px;
 }
 
-.hhs-button:disabled {
+.button:disabled {
     opacity:                0.35;
     cursor:                 not-allowed;
     box-shadow:             none;
@@ -112,7 +112,7 @@
     pointer-events:         none;
 }
 
-.hhs-button__label {
+.button__label {
     /* Reserved for when buttons gain icons or badges. */
     display:                inline-block;
 }
@@ -120,10 +120,10 @@
 
 /* ── Block · button · modifier --primary ──────────────────────────────── */
 
-.hhs-button--primary {
-    color:                  var(--hhs-on-brand);
-    background:             var(--hhs-brand);
-    border-color:           var(--hhs-brand);
+.button--primary {
+    color:                  var(--on-brand);
+    background:             var(--brand);
+    border-color:           var(--brand);
 
     /* Signature octagonal corners: cut top-left and bottom-right. */
     clip-path: polygon(
@@ -136,9 +136,9 @@
     );
 }
 
-.hhs-button--primary:hover:not(:disabled) {
+.button--primary:hover:not(:disabled) {
     box-shadow:
-        0 0 10px            var(--hhs-brand),
+        0 0 10px            var(--brand),
         0 0 24px            rgb(110 175 210 / 0.45);
     filter:                 brightness(1.05);
     text-shadow:
@@ -146,17 +146,17 @@
          0.5px 0            rgb( 40 220 255 / 0.55);
 }
 
-.hhs-button--primary:active:not(:disabled) {
-    animation:              hhs-glitch-press 0.16s linear;
+.button--primary:active:not(:disabled) {
+    animation:              glitch-press 0.16s linear;
     box-shadow:
-        0 0  6px            var(--hhs-brand),
+        0 0  6px            var(--brand),
         0 0 16px            rgb(110 175 210 / 0.30);
 }
 
 
 /* ── Animations ────────────────────────────────────────────────────────── */
 
-@keyframes hhs-glitch-press {
+@keyframes glitch-press {
     0%   { transform: translate( 0,   1px); }
     25%  { transform: translate(-1px, 1px); }
     50%  { transform: translate( 1px, 1px); }

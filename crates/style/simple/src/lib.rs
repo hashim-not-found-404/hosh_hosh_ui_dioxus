@@ -14,11 +14,11 @@ pub fn StyleInjector() -> Element {
 pub fn PrimaryButton(props: PrimaryButtonProps) -> Element {
     rsx! {
         button {
-            class: "hhs-button hhs-button--primary",
+            class: "button button--primary",
             r#type: "button",
             disabled: props.disabled,
             onclick: props.onclick,
-            span { class: "hhs-button__label", "{props.label}" }
+            span { class: "button__label", "{props.label}" }
         }
     }
 }
