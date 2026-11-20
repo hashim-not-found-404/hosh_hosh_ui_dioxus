@@ -12,32 +12,36 @@ fn App() -> Element {
         StyleInjector {}
 
         div {
-            div {
-                PrimaryButton {
-                    label: "Click me",
-                }
-                PrimaryButton {
-                    label: "Disabled",
-                    disabled: true,
-                }
+            style: "
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            ",
 
-                SecondaryButton {
-                    label: "Click me",
-                }
-                SecondaryButton {
-                    label: "Disabled",
-                    disabled: true,
-                }
-
-                TertiaryButton {
-                    label: "Click me",
-                }
-                TertiaryButton {
-                    label: "Disabled",
-                    disabled: true,
-                }
-
+            PrimaryButton {
+                label: "Click me",
             }
+            PrimaryButton {
+                label: "Disabled",
+                disabled: true,
+            }
+
+            SecondaryButton {
+                label: "Click me",
+            }
+            SecondaryButton {
+                label: "Disabled",
+                disabled: true,
+            }
+
+            TertiaryButton {
+                label: "Click me",
+            }
+            TertiaryButton {
+                label: "Disabled",
+                disabled: true,
+            }
+
         }
     }
 }

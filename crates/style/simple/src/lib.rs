@@ -14,7 +14,7 @@ pub fn StyleInjector() -> Element {
 pub fn PrimaryButton(props: PrimaryButtonProps) -> Element {
     rsx! {
         button {
-            class: "button button--primary",
+            class: "button button__primary",
             disabled: props.disabled,
             onclick: props.onclick,
             "{props.label}"
@@ -26,7 +26,7 @@ pub fn PrimaryButton(props: PrimaryButtonProps) -> Element {
 pub fn SecondaryButton(props: SecondaryButtonProps) -> Element {
     rsx! {
         button {
-            class: "button button--secondary",
+            class: "button button__secondary",
             disabled: props.disabled,
             onclick: props.onclick,
             "{props.label}"
@@ -38,7 +38,7 @@ pub fn SecondaryButton(props: SecondaryButtonProps) -> Element {
 pub fn TertiaryButton(props: TertiaryButtonProps) -> Element {
     rsx! {
         button {
-            class: "button button--tertiary",
+            class: "button button__tertiary",
             disabled: props.disabled,
             onclick: props.onclick,
             "{props.label}"

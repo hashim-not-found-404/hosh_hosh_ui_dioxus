@@ -65,28 +65,28 @@ body {
 
 /* primary   ------------------------------------ */
 
-.button--primary {
+.button__primary {
     background:             var(--brand);
     color:                  var(--on-brand);
 }
 
 /* secondary ------------------------------------ */
 
-.button--secondary {
+.button__secondary {
     border-color:           var(--brand);
     color:                  var(--brand);
 }
 
 /* tertiary  ------------------------------------ */
 
-.button--tertiary {
+.button__tertiary {
     color:                  var(--brand);
 }
 
-.button--tertiary:hover:not(:disabled) {
+.button__tertiary:hover:not(:disabled) {
     border-color:           var(--brand);
 }
 
-.button--tertiary:active:not(:disabled) {
+.button__tertiary:active:not(:disabled) {
     border-color:           var(--brand);
 }
