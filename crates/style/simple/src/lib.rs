@@ -15,10 +15,33 @@ pub fn PrimaryButton(props: PrimaryButtonProps) -> Element {
     rsx! {
         button {
             class: "button button--primary",
-            r#type: "button",
             disabled: props.disabled,
             onclick: props.onclick,
-            span { class: "button__label", "{props.label}" }
+            "{props.label}"
+        }
+    }
+}
+
+#[component]
+pub fn SecondaryButton(props: SecondaryButtonProps) -> Element {
+    rsx! {
+        button {
+            class: "button button--secondary",
+            disabled: props.disabled,
+            onclick: props.onclick,
+            "{props.label}"
+        }
+    }
+}
+
+#[component]
+pub fn TertiaryButton(props: TertiaryButtonProps) -> Element {
+    rsx! {
+        button {
+            class: "button button--tertiary",
+            disabled: props.disabled,
+            onclick: props.onclick,
+            "{props.label}"
         }
     }
 }

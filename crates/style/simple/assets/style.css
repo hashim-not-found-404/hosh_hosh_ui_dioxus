@@ -1,165 +1,92 @@
-/* ============================================================================
- * hosh_hosh_ui · simple style preset
- * ============================================================================
- *
- * Tokens live on :root. Every component reads its colors from those
- * variables, so a consumer can re-theme the entire library by
- * overriding any subset of them on any ancestor element:
- *
- *     <div style="--brand: #ff00aa; --bg: #000;">
- *         <PrimaryButton label="Neon" />
- *     </div>
- *
- * Naming follows BEM:
- *
- *     .block                block (shared structure)
- *     .block__element       element (a part of the block)
- *     .block--modifier      modifier (a visual variant)
- *     .block.is-state       state (when :pseudo won't cut it)
- *
- * Blocks in this file:
- *
- *     .button               + modifiers: --primary
- *                               (future: --secondary, --tertiary,
- *                                --danger, --ghost)
- *
- * Add new blocks below. Keep each block's base rule and all its
- * modifiers grouped together. Use CSS custom properties for any
- * value a consumer might want to override per-instance.
- * ============================================================================ */
-
-
-/* ── Tokens ────────────────────────────────────────────────────────────── */
+/*
+block-name__elem-name_mod-name_mod-val
+*/
 
 :root {
     /* Brand accents */
-    --brand:            #6eafd2;
-    --on-brand:         #161a22;
-    --brand-alt:        #c89b64;
+    --brand:            white;
+    --on-brand:         black;
     --danger:           #cd6960;
-    --success:          #7dbe91;
-
-    /* Surfaces */
-    --bg:               #0e1016;
-    --surface:          #14171f;
-    --surface-2:        #1c202a;
-
-    /* Foreground */
-    --text:             #dce2ea;
-    --text-muted:       #828a98;
-    --border:           #343a48;
 
     /* Typography */
-    --font-mono:        ui-monospace, "SFMono-Regular", "SF Mono",
-                            Menlo, Consolas, "Liberation Mono", monospace;
-
-    /* Geometry */
-    --radius-sm:        4px;
-    --radius-md:        8px;
+    --font-size-1:      16px;
+    --font-mono:        monospace, ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono";
 
     /* Motion */
     --dur-fast:         0.08s;
     --dur-normal:       0.15s;
-    --ease-out:         cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+body {
+    background: var(--on-brand);
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--font-mono);
+}
 
 /* ── Block · button ────────────────────────────────────────────────────── */
 
 .button {
-    /* Layout */
-    position:               relative;
-    display:                inline-flex;
-    align-items:            center;
-    justify-content:        center;
-    min-height:             40px;
-    padding:                0 1.25rem;
-
     /* Typography */
     font-family:            var(--font-mono);
-    font-size:              0.875rem;
-    font-weight:            500;
-    letter-spacing:         0.04em;
+    font-size:              var(--font-size-1);
     text-transform:         uppercase;
-    white-space:            nowrap;
 
-    /* Reset — every modifier fills in colors + shape */
-    border:                 1px solid transparent;
-    border-radius:          0;
     background:             transparent;
-    color:                  inherit;
+    color:                  transparent;
+    border-color:           transparent;
+
+    border-style:           solid;
+    border-width:           1px;
 
     /* Interaction */
     cursor:                 pointer;
     user-select:            none;
-    transition:
-        box-shadow          var(--dur-normal) var(--ease-out),
-        transform           var(--dur-fast)   var(--ease-out),
-        filter              var(--dur-normal) var(--ease-out);
-    -webkit-tap-highlight-color: transparent;
 }
 
 .button:focus-visible {
-    outline:                2px solid var(--brand);
-    outline-offset:         3px;
+    outline:                1px solid var(--brand);
+    outline-offset:         2px;
 }
 
 .button:disabled {
     opacity:                0.35;
     cursor:                 not-allowed;
-    box-shadow:             none;
-    filter:                 none;
     pointer-events:         none;
 }
 
-.button__label {
-    /* Reserved for when buttons gain icons or badges. */
-    display:                inline-block;
+.button:hover:not(:disabled) {
+    opacity: 0.6;
 }
 
+.button:active:not(:disabled) {
+    opacity: 0.4;
+}
 
-/* ── Block · button · modifier --primary ──────────────────────────────── */
+/* ── primary ──────────────────────────────── */
 
 .button--primary {
-    color:                  var(--on-brand);
     background:             var(--brand);
+    color:                  var(--on-brand);
+}
+
+/* ── secondary ──────────────────────────────── */
+
+.button--secondary {
     border-color:           var(--brand);
-
-    /* Signature octagonal corners: cut top-left and bottom-right. */
-    clip-path: polygon(
-        10px                    0,
-        100%                    0,
-        100%                    calc(100% - 10px),
-        calc(100% - 10px)       100%,
-        0                       100%,
-        0                       10px
-    );
+    color:                  var(--brand);
 }
 
-.button--primary:hover:not(:disabled) {
-    box-shadow:
-        0 0 10px            var(--brand),
-        0 0 24px            rgb(110 175 210 / 0.45);
-    filter:                 brightness(1.05);
-    text-shadow:
-        -0.5px 0            rgb(255  60 100 / 0.55),
-         0.5px 0            rgb( 40 220 255 / 0.55);
+/* ── tertiary ──────────────────────────────── */
+
+.button--tertiary {
+    color:                  var(--brand);
 }
 
-.button--primary:active:not(:disabled) {
-    animation:              glitch-press 0.16s linear;
-    box-shadow:
-        0 0  6px            var(--brand),
-        0 0 16px            rgb(110 175 210 / 0.30);
+.button--tertiary:hover:not(:disabled) {
+    border-color:           var(--brand);
 }
 
-
-/* ── Animations ────────────────────────────────────────────────────────── */
-
-@keyframes glitch-press {
-    0%   { transform: translate( 0,   1px); }
-    25%  { transform: translate(-1px, 1px); }
-    50%  { transform: translate( 1px, 1px); }
-    75%  { transform: translate(-1px, 1px); }
-    100% { transform: translate( 0,   1px); }
+.button--tertiary:active:not(:disabled) {
+    border-color:           var(--brand);
 }

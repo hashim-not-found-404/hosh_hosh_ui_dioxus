@@ -8,8 +8,6 @@ fn main() {
 
 #[component]
 fn App() -> Element {
-    let mut clicks = use_signal(|| 0u32);
-
     rsx! {
         StyleInjector {}
 
@@ -17,15 +15,28 @@ fn App() -> Element {
             div {
                 PrimaryButton {
                     label: "Click me",
-                    onclick: move |_| clicks += 1,
                 }
                 PrimaryButton {
                     label: "Disabled",
                     disabled: true,
                 }
-                PrimaryButton {
-                    label: format!("Clicks: {clicks}"),
+
+                SecondaryButton {
+                    label: "Click me",
                 }
+                SecondaryButton {
+                    label: "Disabled",
+                    disabled: true,
+                }
+
+                TertiaryButton {
+                    label: "Click me",
+                }
+                TertiaryButton {
+                    label: "Disabled",
+                    disabled: true,
+                }
+
             }
         }
     }
