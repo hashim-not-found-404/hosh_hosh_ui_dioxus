@@ -24,7 +24,7 @@ body {
     font-family: var(--font-mono);
 }
 
-/* ── Block · button ────────────────────────────────────────────────────── */
+/* button   ------------------------------------- */
 
 .button {
     /* Typography */
@@ -63,21 +63,21 @@ body {
     opacity: 0.4;
 }
 
-/* ── primary ──────────────────────────────── */
+/* primary   ------------------------------------ */
 
 .button--primary {
     background:             var(--brand);
     color:                  var(--on-brand);
 }
 
-/* ── secondary ──────────────────────────────── */
+/* secondary ------------------------------------ */
 
 .button--secondary {
     border-color:           var(--brand);
     color:                  var(--brand);
 }
 
-/* ── tertiary ──────────────────────────────── */
+/* tertiary  ------------------------------------ */
 
 .button--tertiary {
     color:                  var(--brand);
