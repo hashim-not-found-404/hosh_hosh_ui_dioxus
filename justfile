@@ -193,7 +193,7 @@ new crate_name:
 
 ###################################################################################################
 
-run platform:
+run platform = "web":
     RUSTFLAGS="-A warnings" dx serve --{{platform}} --open --port=8082 --watch=false --keep-names --debug-symbols=true --hot-reload=false -p app_root
 
 ###################################################################################################

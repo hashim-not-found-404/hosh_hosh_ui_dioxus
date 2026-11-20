@@ -1,12 +1,12 @@
-use prelude::document::Style;
+use prelude::document::Stylesheet;
 use prelude::*;
 
-const STYLES: &str = include_str!("../assets/style.css");
+const STYLES: Asset = asset!("/assets/style.css");
 
 #[component]
 pub fn StyleInjector() -> Element {
     rsx! {
-        Style { "{STYLES}" }
+        Stylesheet { href: STYLES }
     }
 }
 
