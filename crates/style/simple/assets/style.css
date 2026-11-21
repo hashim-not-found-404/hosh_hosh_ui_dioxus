@@ -90,3 +90,46 @@ body {
 .button__tertiary:active:not(:disabled) {
     border-color:           var(--brand);
 }
+
+/* input  --------------------------------------- */
+
+.input {
+    /* Typography */
+    font-family:            var(--font-mono);
+    font-size:              var(--font-size-1);
+
+    background:             transparent;
+    color:                  transparent;
+    border-color:           transparent;
+
+    border-style:           solid;
+    border-width:           1px;
+}
+
+.input__field {
+    background:       transparent;
+    color:            var(--brand);
+
+    border-color:     var(--brand);
+    caret-color:      var(--brand);
+}
+
+.input__field:focus-visible {
+    outline:                1px solid var(--brand);
+    outline-offset:         2px;
+}
+
+.input__field:disabled {
+    opacity:        0.35;
+    cursor:         not-allowed;
+}
+
+.input__field::placeholder {
+    color:          var(--brand);
+    opacity:        0.35;
+}
+
+.input__field::selection {
+    background:     var(--brand);
+    color:          var(--on-brand);
+}

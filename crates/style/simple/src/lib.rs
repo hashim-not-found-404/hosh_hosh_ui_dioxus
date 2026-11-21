@@ -45,3 +45,20 @@ pub fn TertiaryButton(props: TertiaryButtonProps) -> Element {
         }
     }
 }
+
+#[component]
+pub fn InputField(props: InputFieldProps) -> Element {
+    let value = props.value;
+    let placeholder = props.placeholder.clone().unwrap_or_default();
+
+    rsx! {
+        input {
+            class: "input input__field",
+            r#type: "text",
+            placeholder: "{placeholder}",
+            value: "{value}",
+            disabled: props.disabled,
+            oninput: props.oninput,
+        }
+    }
+}

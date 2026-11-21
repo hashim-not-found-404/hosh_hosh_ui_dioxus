@@ -8,6 +8,8 @@ fn main() {
 
 #[component]
 fn App() -> Element {
+    let name = use_signal(|| String::new());
+
     rsx! {
         StyleInjector {}
 
@@ -15,6 +17,7 @@ fn App() -> Element {
             style: "
             display: flex;
             flex-direction: column;
+            align-items: center;
             gap: 8px;
             ",
 
@@ -39,6 +42,16 @@ fn App() -> Element {
             }
             TertiaryButton {
                 label: "Disabled",
+                disabled: true,
+            }
+
+            InputField {
+                value: name,
+                placeholder: "Jane Doe",
+            }
+            InputField {
+                value: name,
+                placeholder: "Can't edit me",
                 disabled: true,
             }
 
