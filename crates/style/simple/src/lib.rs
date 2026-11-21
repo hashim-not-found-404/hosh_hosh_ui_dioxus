@@ -49,7 +49,7 @@ pub fn TertiaryButton(props: TertiaryButtonProps) -> Element {
 #[component]
 pub fn InputField(props: InputFieldProps) -> Element {
     let value = props.value;
-    let placeholder = props.placeholder.clone().unwrap_or_default();
+    let placeholder = props.placeholder.clone();
 
     rsx! {
         input {
