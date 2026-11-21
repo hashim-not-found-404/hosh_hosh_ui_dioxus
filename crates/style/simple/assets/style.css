@@ -1,135 +1,287 @@
-/*
-block-name__elem-name_mod-name_mod-val
-*/
-
 :root {
-    /* Brand accents */
-    --brand:            white;
-    --on-brand:         black;
-    --danger:           #cd6960;
+    --brand:            #ffffff;
+    --on-brand:         #0a0a0a;
+    --danger:           #ff4d4f;
+    --surface:          #141414;
+    --surface-hover:    #1f1f1f;
+    --border:           #333333;
+    --border-focus:     #ffffff;
+    --text-muted:       #888888;
 
-    /* Typography */
-    --font-size-1:      16px;
-    --font-mono:        monospace, ui-monospace, "SFMono-Regular", "SF Mono", Menlo, Consolas, "Liberation Mono";
+    --font-size-1:      14px;
+    --font-mono:        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-    /* Motion */
-    --dur-fast:         0.08s;
-    --dur-normal:       0.15s;
+    --dur-fast:         0.1s;
+    --dur-normal:       0.2s;
+    --radius:           4px;
 }
 
 body {
     background: var(--on-brand);
+    color: var(--brand);
     margin: 0;
     min-height: 100vh;
     font-family: var(--font-mono);
+    font-size: var(--font-size-1);
 }
 
-/* button   ------------------------------------- */
-
-.button {
-    /* Typography */
-    font-family:            var(--font-mono);
-    font-size:              var(--font-size-1);
-    text-transform:         uppercase;
-
-    background:             transparent;
-    color:                  transparent;
-    border-color:           transparent;
-
-    border-style:           solid;
-    border-width:           1px;
-
-    /* Interaction */
-    cursor:                 pointer;
-    user-select:            none;
+/* =========================================
+   BUTTON
+   ========================================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-1);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    user-select: none;
+    transition: all var(--dur-normal) ease;
+    outline: none;
 }
 
-.button:focus-visible {
-    outline:                1px solid var(--brand);
-    outline-offset:         2px;
+.btn:focus-visible {
+    box-shadow: 0 0 0 2px var(--on-brand), 0 0 0 4px var(--brand);
 }
 
-.button:disabled {
-    opacity:                0.35;
-    cursor:                 not-allowed;
-    pointer-events:         none;
+.btn--primary {
+    background: var(--brand);
+    color: var(--on-brand);
+}
+.btn--primary:hover:not(.btn--disabled) {
+    background: #e0e0e0;
 }
 
-.button:hover:not(:disabled) {
-    opacity: 0.6;
+.btn--secondary {
+    background: transparent;
+    color: var(--brand);
+    border-color: var(--brand);
+}
+.btn--secondary:hover:not(.btn--disabled) {
+    background: var(--surface-hover);
 }
 
-.button:active:not(:disabled) {
+.btn--tertiary {
+    background: transparent;
+    color: var(--brand);
+    border-color: transparent;
+}
+.btn--tertiary:hover:not(.btn--disabled) {
+    background: var(--surface-hover);
+}
+
+.btn--disabled {
     opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
-/* primary   ------------------------------------ */
-
-.button__primary {
-    background:             var(--brand);
-    color:                  var(--on-brand);
-}
-
-/* secondary ------------------------------------ */
-
-.button__secondary {
-    border-color:           var(--brand);
-    color:                  var(--brand);
-}
-
-/* tertiary  ------------------------------------ */
-
-.button__tertiary {
-    color:                  var(--brand);
-}
-
-.button__tertiary:hover:not(:disabled) {
-    border-color:           var(--brand);
-}
-
-.button__tertiary:active:not(:disabled) {
-    border-color:           var(--brand);
-}
-
-/* input  --------------------------------------- */
-
+/* =========================================
+   INPUT FIELD
+   ========================================= */
 .input {
-    /* Typography */
-    font-family:            var(--font-mono);
-    font-size:              var(--font-size-1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
 
-    background:             transparent;
-    color:                  transparent;
-    border-color:           transparent;
-
-    border-style:           solid;
-    border-width:           1px;
+.input__label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .input__field {
-    background:       transparent;
-    color:            var(--brand);
-
-    border-color:     var(--brand);
-    caret-color:      var(--brand);
-}
-
-.input__field:focus-visible {
-    outline:                1px solid var(--brand);
-    outline-offset:         2px;
-}
-
-.input__field:disabled {
-    opacity:        0.35;
-    cursor:         not-allowed;
+    background: var(--surface);
+    color: var(--brand);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-1);
+    outline: none;
+    transition: border-color var(--dur-fast) ease;
 }
 
 .input__field::placeholder {
-    color:          var(--brand);
-    opacity:        0.35;
+    color: var(--text-muted);
 }
 
-.input__field::selection {
-    background:     var(--brand);
-    color:          var(--on-brand);
+.input__field:focus {
+    border-color: var(--border-focus);
+}
+
+.input--error .input__field {
+    border-color: var(--danger);
+}
+
+.input__error {
+    font-size: 12px;
+    color: var(--danger);
+}
+
+.input--disabled .input__field {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   INPUT FIELD WITH LIST
+   ========================================= */
+.input-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.input-list__label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.input-list__field {
+    background: var(--surface);
+    color: var(--brand);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-1);
+    outline: none;
+}
+
+.input-list__field:focus {
+    border-color: var(--border-focus);
+}
+
+.input-list__error {
+    font-size: 12px;
+    color: var(--danger);
+}
+
+.input-list__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.input-list__item {
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2px 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.input-list--disabled .input-list__field {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   CHECKBOX
+   ========================================= */
+.checkbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox__box {
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--dur-fast) ease;
+}
+
+.checkbox--checked .checkbox__box {
+    background: var(--brand);
+    border-color: var(--brand);
+}
+
+.checkbox__check {
+    width: 10px;
+    height: 10px;
+    background: var(--on-brand);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all var(--dur-fast) ease;
+}
+
+.checkbox--checked .checkbox__check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.checkbox__label {
+    font-size: var(--font-size-1);
+    color: var(--brand);
+}
+
+.checkbox--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* =========================================
+   COMBOBOX
+   ========================================= */
+.combo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.combo__label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.combo__select {
+    background: var(--surface);
+    color: var(--brand);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-1);
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+.combo__select:focus {
+    border-color: var(--border-focus);
+}
+
+.combo--disabled .combo__select {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
