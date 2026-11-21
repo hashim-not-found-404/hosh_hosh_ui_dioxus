@@ -51,27 +51,29 @@ pub fn TertiaryButton(props: TertiaryButtonProps) -> Element {
 
 #[component]
 pub fn InputField(props: InputFieldProps) -> Element {
+    let value = props.value.clone();
+    let placeholder = props.placeholder.clone();
+    let label = props.label.clone();
+    let has_value = !value.is_empty();
+
     rsx! {
         div {
             class: "input",
-            class: if props.disabled { "input--disabled" },
+            class: if has_value { "input--has-value" },
             class: if props.error.is_some() { "input--error" },
-
-            if !props.label.is_empty() {
-                label { class: "input__label", "{props.label}" }
-            }
+            class: if props.disabled { "input--disabled" },
 
             input {
                 class: "input__field",
                 r#type: "text",
-                placeholder: "{props.placeholder}",
-                value: "{props.value}",
+                placeholder: "{placeholder}",
+                value: "{value}",
                 disabled: props.disabled,
                 oninput: props.oninput,
             }
 
-            if let Some(err) = &props.error {
-                span { class: "input__error", "{err}" }
+            if !label.is_empty() {
+                label { class: "input__label", "{label}" }
             }
         }
     }
@@ -79,33 +81,35 @@ pub fn InputField(props: InputFieldProps) -> Element {
 
 #[component]
 pub fn InputFieldWithList<const N: usize>(props: InputFieldWithListProps<N>) -> Element {
+    let value = props.value.clone();
+    let placeholder = props.placeholder.clone();
+    let label = props.label.clone();
+    let has_value = !value.is_empty();
+
     rsx! {
         div {
             class: "input-list",
-            class: if props.disabled { "input-list--disabled" },
+            class: if has_value { "input-list--has-value" },
             class: if props.error.is_some() { "input-list--error" },
-
-            if !props.label.is_empty() {
-                label { class: "input-list__label", "{props.label}" }
-            }
+            class: if props.disabled { "input-list--disabled" },
 
             input {
                 class: "input-list__field",
                 r#type: "text",
-                placeholder: "{props.placeholder}",
-                value: "{props.value}",
+                placeholder: "{placeholder}",
+                value: "{value}",
                 disabled: props.disabled,
                 oninput: props.oninput,
             }
 
-            if let Some(err) = &props.error {
-                span { class: "input-list__error", "{err}" }
+            if !label.is_empty() {
+                label { class: "input-list__label", "{label}" }
             }
 
             if !props.list.is_empty() {
                 div { class: "input-list__items",
                     for item in props.list {
-                        span { class: "input-list__item",
+                        div { class: "input-list__item",
                             for part in item {
                                 "{part} "
                             }
@@ -144,7 +148,9 @@ pub fn CheckBox(props: CheckBoxProps) -> Element {
 #[component]
 pub fn ComboBox(props: ComboBoxProps) -> Element {
     rsx! {
-        div { class: "combo", class: if props.disabled { "combo--disabled" },
+        div {
+            class: "combo",
+            class: if props.disabled { "combo--disabled" },
 
             if !props.label.is_empty() {
                 label { class: "combo__label", "{props.label}" }
@@ -164,7 +170,11 @@ pub fn ComboBox(props: ComboBoxProps) -> Element {
                 }
 
                 for (i, item) in props.list.iter().enumerate() {
-                    option { value: "{i}", selected: props.value == Some(i), "{item}" }
+                    option {
+                        value: "{i}",
+                        selected: props.value == Some(i),
+                        "{item}"
+                    }
                 }
             }
         }

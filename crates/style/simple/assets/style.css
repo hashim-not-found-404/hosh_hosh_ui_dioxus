@@ -57,6 +57,12 @@ body {
 .btn--primary:hover:not(.btn--disabled) {
     background: #e0e0e0;
 }
+.btn--primary:active:not(.btn--disabled) {
+    transform: scale(0.96);
+    background: var(--on-brand);
+    color: var(--brand);
+    border-color: var(--brand);
+}
 
 .btn--secondary {
     background: transparent;
@@ -66,6 +72,11 @@ body {
 .btn--secondary:hover:not(.btn--disabled) {
     background: var(--surface-hover);
 }
+.btn--secondary:active:not(.btn--disabled) {
+    transform: scale(0.96);
+    background: var(--brand);
+    color: var(--on-brand);
+}
 
 .btn--tertiary {
     background: transparent;
@@ -74,6 +85,12 @@ body {
 }
 .btn--tertiary:hover:not(.btn--disabled) {
     background: var(--surface-hover);
+}
+.btn--tertiary:active:not(.btn--disabled) {
+    transform: scale(0.96);
+    border-color: var(--brand);
+    background: var(--brand);
+    color: var(--on-brand);
 }
 
 .btn--disabled {
@@ -86,45 +103,63 @@ body {
    INPUT FIELD
    ========================================= */
 .input {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    position: relative;
     width: 100%;
-}
-
-.input__label {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    margin-bottom: 16px;
 }
 
 .input__field {
+    width: 100%;
+    padding: 20px 12px 8px 12px;
     background: var(--surface);
     color: var(--brand);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 8px 12px;
     font-family: var(--font-mono);
     font-size: var(--font-size-1);
     outline: none;
-    transition: border-color var(--dur-fast) ease;
+    transition: border-color var(--dur-normal) ease;
+    box-sizing: border-box;
 }
 
 .input__field::placeholder {
-    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity var(--dur-normal) ease;
 }
 
 .input__field:focus {
     border-color: var(--border-focus);
 }
 
+.input__field:focus::placeholder {
+    opacity: 0.5;
+}
+
+.input__label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--font-size-1);
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: all var(--dur-normal) ease;
+    background: var(--surface);
+    padding: 0 4px;
+}
+
+.input--has-value .input__label,
+.input__field:focus + .input__label {
+    top: 0;
+    transform: translateY(-50%) scale(0.85);
+    color: var(--border-focus);
+}
+
 .input--error .input__field {
     border-color: var(--danger);
 }
 
-.input__error {
-    font-size: 12px;
+.input--error .input__label {
     color: var(--danger);
 }
 
@@ -137,52 +172,84 @@ body {
    INPUT FIELD WITH LIST
    ========================================= */
 .input-list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    position: relative;
     width: 100%;
-}
-
-.input-list__label {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-transform: uppercase;
+    margin-bottom: 16px;
 }
 
 .input-list__field {
+    width: 100%;
+    padding: 20px 12px 8px 12px;
     background: var(--surface);
     color: var(--brand);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 8px 12px;
     font-family: var(--font-mono);
     font-size: var(--font-size-1);
     outline: none;
+    transition: border-color var(--dur-normal) ease;
+    box-sizing: border-box;
+}
+
+.input-list__field::placeholder {
+    opacity: 0;
+    transition: opacity var(--dur-normal) ease;
 }
 
 .input-list__field:focus {
     border-color: var(--border-focus);
 }
 
-.input-list__error {
-    font-size: 12px;
-    color: var(--danger);
+.input-list__field:focus::placeholder {
+    opacity: 0.5;
+}
+
+.input-list__label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--font-size-1);
+    color: var(--text-muted);
+    pointer-events: none;
+    transition: all var(--dur-normal) ease;
+    background: var(--surface);
+    padding: 0 4px;
+}
+
+.input-list--has-value .input-list__label,
+.input-list__field:focus + .input-list__label {
+    top: 0;
+    transform: translateY(-50%) scale(0.85);
+    color: var(--border-focus);
 }
 
 .input-list__items {
+    width: 100%;
+    margin-top: 8px;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 4px;
-    margin-top: 4px;
 }
 
 .input-list__item {
-    background: var(--surface-hover);
+    width: 100%;
+    padding: 8px 12px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-1);
+    background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 2px 8px;
-    font-size: 12px;
-    color: var(--text-muted);
+    color: var(--brand);
+    box-sizing: border-box;
+}
+
+.input-list--error .input-list__field {
+    border-color: var(--danger);
+}
+
+.input-list--error .input-list__label {
+    color: var(--danger);
 }
 
 .input-list--disabled .input-list__field {
