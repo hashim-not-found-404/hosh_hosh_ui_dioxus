@@ -1,0 +1,24 @@
+{
+  "ignoreFiles": [
+    "**/node_modules/**",
+    "**/target/**",
+    "**/dist/**",
+    "**/.git/**"
+  ],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "color-hex-length": "long",
+    "order/order": [
+      "custom-properties",
+      "declarations",
+      { "type": "rule", "selector": "^:root$" },
+      { "type": "rule", "selector": "^body$" },
+      { "type": "rule", "selector": "^\\.[a-zA-Z][a-zA-Z0-9-]*$" },
+      { "type": "rule", "selector": "__" },
+      { "type": "rule", "selector": "--" },
+      { "type": "rule", "selector": ":" },
+      { "type": "at-rule" }
+    ],
+    "order/properties-alphabetical-order": true
+  }
+}

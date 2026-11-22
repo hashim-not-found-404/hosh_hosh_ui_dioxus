@@ -29,3 +29,6 @@ codebase.txt
 diffs.txt
 lcov.info
 tarpaulin-report.html
+package.json
+package-lock.json
+node_modules
