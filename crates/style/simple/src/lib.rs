@@ -106,7 +106,7 @@ pub fn InputFieldWithList<const N: usize>(props: InputFieldWithListProps<N>) -> 
                 label { class: "input-list__label", "{label}" }
             }
 
-            if !props.list.is_empty() {
+            if !props.list.is_empty() && !props.disabled {
                 div { class: "input-list__items",
                     for item in props.list {
                         div { class: "input-list__item",
@@ -147,10 +147,10 @@ pub fn CheckBox(props: CheckBoxProps) -> Element {
 
 #[component]
 pub fn ComboBox(props: ComboBoxProps) -> Element {
+    let value_name = props.value.map(|v| v.to_string()).unwrap_or_default();
+
     rsx! {
-        div {
-            class: "combo",
-            class: if props.disabled { "combo--disabled" },
+        div { class: "combo", class: if props.disabled { "combo--disabled" },
 
             if !props.label.is_empty() {
                 label { class: "combo__label", "{props.label}" }
@@ -160,21 +160,10 @@ pub fn ComboBox(props: ComboBoxProps) -> Element {
                 class: "combo__select",
                 disabled: props.disabled,
                 onclick: props.onclick,
-                value: "{props.value.map(|v| v.to_string()).unwrap_or_default()}",
-
-                option {
-                    value: "",
-                    disabled: true,
-                    selected: props.value.is_none(),
-                    "Select..."
-                }
+                value: "{value_name}",
 
                 for (i, item) in props.list.iter().enumerate() {
-                    option {
-                        value: "{i}",
-                        selected: props.value == Some(i),
-                        "{item}"
-                    }
+                    option { value: "{i}", selected: props.value == Some(i), "{item}" }
                 }
             }
         }
