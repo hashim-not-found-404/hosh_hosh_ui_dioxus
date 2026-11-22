@@ -60,11 +60,11 @@ pub fn InputField(props: InputFieldProps) -> Element {
         div {
             class: "input",
             class: if has_value { "input--has-value" },
-            class: if props.error.is_some() { "input--error" },
             class: if props.disabled { "input--disabled" },
 
             input {
                 class: "input__field",
+                class: if props.error.is_some() { "input__field--error" },
                 r#type: "text",
                 placeholder: "{placeholder}",
                 value: "{value}",
@@ -73,7 +73,11 @@ pub fn InputField(props: InputFieldProps) -> Element {
             }
 
             if !label.is_empty() {
-                label { class: "input__label", "{label}" }
+                label {
+                    class: "input__label",
+                    class: if props.error.is_some() { "input__label--error" },
+                    "{label}"
+                }
             }
 
             if let Some(err) = props.error.clone() {

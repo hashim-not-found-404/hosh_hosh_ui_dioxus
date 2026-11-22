@@ -117,15 +117,6 @@ body {
     width:                   100%;
 }
 
-.input--error {
-    border-color:            color-mix(in srgb, var(--danger) 50%, transparent);
-    color:                   var(--danger);
-}
-
-.input--error:focus {
-    border-color:            var(--danger);
-}
-
 .input__field {
     background:              var(--on-brand);
     border:                  1px solid color-mix(in srgb, var(--brand) 50%, transparent);
@@ -153,6 +144,14 @@ body {
     opacity:                 0.5;
 }
 
+.input__field--error {
+    border-color:            color-mix(in srgb, var(--danger) 50%, transparent);
+}
+
+.input__field--error:focus {
+    border-color:            var(--danger);
+}
+
 .input__label {
     background:              var(--on-brand);
     color:                   var(--brand);
@@ -167,6 +166,10 @@ body {
     transition:              all var(--dur-normal) ease;
 }
 
+.input__label--error {
+    color:                   var(--danger);
+}
+
 .input__error-label {
     color:                   var(--danger);
     font-size:               var(--font-size-2);
@@ -179,7 +182,7 @@ body {
     transform:               translateY(-50%) scale(0.85);
 }
 
-.input--disabled .input__field {
+.input--disabled {
     cursor:                  not-allowed;
     opacity:                 0.5;
 }
