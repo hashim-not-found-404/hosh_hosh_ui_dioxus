@@ -8,7 +8,8 @@
     --border-focus:     #ffffff;
     --text-muted:       #888888;
 
-    --font-size-1:      14px;
+    --font-size-1:      16px;
+    --font-size-2:      12px;
     --font-mono:        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
     --dur-fast:         0.1s;
@@ -108,17 +109,26 @@ body {
     margin-bottom: 16px;
 }
 
+.input--error {
+    border-color: color-mix(in srgb, var(--danger) 50%, transparent);
+    color: var(--danger);
+}
+
+.input--error:focus {
+    border-color: var(--danger);
+}
+
 .input__field {
     width: 100%;
     padding: 12px 12px 12px 12px;
     background: var(--on-brand);
     color: var(--brand);
-    border: 1px solid var(--brand);
+    border: 1px solid color-mix(in srgb, var(--brand) 50%, transparent);
     border-radius: var(--radius);
     font-family: var(--font-mono);
     font-size: var(--font-size-1);
     outline: none;
-    transition: border-color var(--dur-normal) ease;
+    transition: opacity var(--dur-normal) ease;
     box-sizing: border-box;
 }
 
@@ -128,7 +138,7 @@ body {
 }
 
 .input__field:focus {
-    border-color: var(--brand);
+    border: 1px solid var(--brand) ;
 }
 
 .input__field:focus::placeholder {
@@ -149,23 +159,16 @@ body {
     padding: 0 4px;
 }
 
+.input__error-label{
+    font-size: var(--font-size-2);
+    color: var(--danger);
+}
+
 .input--has-value .input__label,
 .input__field:focus + .input__label {
     top: 0;
     transform: translateY(-50%) scale(0.85);
     opacity: 1;
-}
-
-.input__field--error {
-    border-color: var(--danger);
-}
-
-.input__label--error {
-    color: var(--danger);
-}
-
-.input__error {
-    color: var(--danger);
 }
 
 .input--disabled .input__field {
