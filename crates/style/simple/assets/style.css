@@ -1,50 +1,50 @@
 :root {
-    --brand: #ffffff;
-    --on-brand: #000000;
-    --danger: #ff4d4f;
-    --surface: #141414;
-    --surface-hover: #1f1f1f;
-    --border: #333333;
-    --border-focus: #ffffff;
-    --text-muted: #888888;
-    --font-size-1: 16px;
-    --font-size-2: 12px;
+    --brand:                 #ffffff;
+    --on-brand:              #000000;
+    --danger:                #ff4d4f;
+    --surface:               #141414;
+    --surface-hover:         #1f1f1f;
+    --border:                #333333;
+    --border-focus:          #ffffff;
+    --text-muted:            #888888;
+    --font-size-1:           16px;
+    --font-size-2:           12px;
     --font-mono:
         ui-monospace, sfmono-regular, menlo, monaco, consolas,
         "Liberation Mono", "Courier New", monospace;
-    --dur-fast: 0.1s;
-    --dur-normal: 0.2s;
-    --radius: 4px;
+    --dur-fast:              0.1s;
+    --dur-normal:            0.2s;
+    --radius:                4px;
 }
 
 body {
-    background: var(--on-brand);
-    color: var(--brand);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-1);
-    margin: 0;
-    min-height: 100vh;
+    background:              var(--on-brand);
+    color:                   var(--brand);
+    font-family:             var(--font-mono);
+    font-size:               var(--font-size-1);
+    margin:                  0;
+    min-height:              100vh;
 }
 
 /* =========================================
    BUTTON
    ========================================= */
 .btn {
-    align-items: center;
-    border: 1px solid transparent;
-    border-radius: var(--radius);
-    cursor: pointer;
-    display: inline-flex;
-    font-family: var(--font-mono);
-    font-size: var(--font-size-1);
-    font-weight: 500;
-    justify-content: center;
-    letter-spacing: 0.05em;
-    outline: none;
-    padding: 8px 16px;
-    text-transform: uppercase;
-    transition: all var(--dur-normal) ease;
-    user-select: none;
+    align-items:             center;
+    border:                  1px solid transparent;
+    border-radius:           var(--radius);
+    cursor:                  pointer;
+    display:                 inline-flex;
+    font-family:             var(--font-mono);
+    font-size:               var(--font-size-1);
+    font-weight:             500;
+    justify-content:         center;
+    letter-spacing:          0.05em;
+    outline:                 none;
+    padding:                 8px 16px;
+    text-transform:          uppercase;
+    transition:              all var(--dur-normal) ease;
+    user-select:             none;
 }
 
 .btn:focus-visible {
@@ -54,317 +54,317 @@ body {
 }
 
 .btn--disabled {
-    cursor: not-allowed;
-    opacity: 0.4;
-    pointer-events: none;
+    cursor:                  not-allowed;
+    opacity:                 0.4;
+    pointer-events:          none;
 }
 
 .btn--primary {
-    background: var(--brand);
-    color: var(--on-brand);
+    background:              var(--brand);
+    color:                   var(--on-brand);
 }
 
 .btn--primary:hover:not(.btn--disabled) {
-    filter: brightness(0.88);
+    filter:                  brightness(0.88);
 }
 
 .btn--primary:active:not(.btn--disabled) {
-    background: var(--on-brand);
-    border-color: var(--brand);
-    color: var(--brand);
-    transform: scale(0.96);
+    background:              var(--on-brand);
+    border-color:            var(--brand);
+    color:                   var(--brand);
+    transform:               scale(0.96);
 }
 
 .btn--secondary {
-    background: transparent;
-    border-color: var(--brand);
-    color: var(--brand);
+    background:              transparent;
+    border-color:            var(--brand);
+    color:                   var(--brand);
 }
 
 .btn--secondary:hover:not(.btn--disabled) {
-    filter: brightness(0.88);
+    filter:                  brightness(0.88);
 }
 
 .btn--secondary:active:not(.btn--disabled) {
-    background: var(--brand);
-    color: var(--on-brand);
-    transform: scale(0.96);
+    background:              var(--brand);
+    color:                   var(--on-brand);
+    transform:               scale(0.96);
 }
 
 .btn--tertiary {
-    background: transparent;
-    border-color: transparent;
-    color: var(--brand);
+    background:              transparent;
+    border-color:            transparent;
+    color:                   var(--brand);
 }
 
 .btn--tertiary:hover:not(.btn--disabled) {
-    filter: brightness(0.88);
+    filter:                  brightness(0.88);
 }
 
 .btn--tertiary:active:not(.btn--disabled) {
-    background: var(--brand);
-    border-color: var(--brand);
-    color: var(--on-brand);
-    transform: scale(0.96);
+    background:              var(--brand);
+    border-color:            var(--brand);
+    color:                   var(--on-brand);
+    transform:               scale(0.96);
 }
 
 /* =========================================
    INPUT FIELD
    ========================================= */
 .input {
-    margin-bottom: 16px;
-    position: relative;
-    width: 100%;
+    margin-bottom:           16px;
+    position:                relative;
+    width:                   100%;
 }
 
 .input--error {
-    border-color: color-mix(in srgb, var(--danger) 50%, transparent);
-    color: var(--danger);
+    border-color:            color-mix(in srgb, var(--danger) 50%, transparent);
+    color:                   var(--danger);
 }
 
 .input--error:focus {
-    border-color: var(--danger);
+    border-color:            var(--danger);
 }
 
 .input__field {
-    background: var(--on-brand);
-    border: 1px solid color-mix(in srgb, var(--brand) 50%, transparent);
-    border-radius: var(--radius);
-    box-sizing: border-box;
-    color: var(--brand);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-1);
-    outline: none;
-    padding: 12px;
-    transition: border-color var(--dur-normal) ease;
-    width: 100%;
+    background:              var(--on-brand);
+    border:                  1px solid color-mix(in srgb, var(--brand) 50%, transparent);
+    border-radius:           var(--radius);
+    box-sizing:              border-box;
+    color:                   var(--brand);
+    font-family:             var(--font-mono);
+    font-size:               var(--font-size-1);
+    outline:                 none;
+    padding:                 12px;
+    transition:              border-color var(--dur-normal) ease;
+    width:                   100%;
 }
 
 .input__field::placeholder {
-    opacity: 0;
-    transition: opacity var(--dur-normal) ease;
+    opacity:                 0;
+    transition:              opacity var(--dur-normal) ease;
 }
 
 .input__field:focus {
-    border-color: var(--brand);
+    border-color:            var(--brand);
 }
 
 .input__field:focus::placeholder {
-    opacity: 0.5;
+    opacity:                 0.5;
 }
 
 .input__label {
-    background: var(--on-brand);
-    color: var(--brand);
-    font-size: var(--font-size-1);
-    left: 12px;
-    opacity: 0.5;
-    padding: 0 4px;
-    pointer-events: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: all var(--dur-normal) ease;
+    background:              var(--on-brand);
+    color:                   var(--brand);
+    font-size:               var(--font-size-1);
+    left:                    12px;
+    opacity:                 0.5;
+    padding:                 0 4px;
+    pointer-events:          none;
+    position:                absolute;
+    top:                     50%;
+    transform:               translateY(-50%);
+    transition:              all var(--dur-normal) ease;
 }
 
 .input__error-label {
-    color: var(--danger);
-    font-size: var(--font-size-2);
+    color:                   var(--danger);
+    font-size:               var(--font-size-2);
 }
 
 .input--has-value .input__label,
 .input__field:focus + .input__label {
-    opacity: 1;
-    top: 0;
-    transform: translateY(-50%) scale(0.85);
+    opacity:                 1;
+    top:                     0;
+    transform:               translateY(-50%) scale(0.85);
 }
 
 .input--disabled .input__field {
-    cursor: not-allowed;
-    opacity: 0.5;
+    cursor:                  not-allowed;
+    opacity:                 0.5;
 }
 
 /* =========================================
    INPUT FIELD WITH LIST
    ========================================= */
 .input-list {
-    margin-bottom: 16px;
-    position: relative;
-    width: 100%;
+    margin-bottom:           16px;
+    position:                relative;
+    width:                   100%;
 }
 
 .input-list__field {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-sizing: border-box;
-    color: var(--brand);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-1);
-    outline: none;
-    padding: 20px 12px 8px;
-    transition: border-color var(--dur-normal) ease;
-    width: 100%;
+    background:              var(--surface);
+    border:                  1px solid var(--border);
+    border-radius:           var(--radius);
+    box-sizing:              border-box;
+    color:                   var(--brand);
+    font-family:             var(--font-mono);
+    font-size:               var(--font-size-1);
+    outline:                 none;
+    padding:                 20px 12px 8px;
+    transition:              border-color var(--dur-normal) ease;
+    width:                   100%;
 }
 
 .input-list__field::placeholder {
-    opacity: 0;
-    transition: opacity var(--dur-normal) ease;
+    opacity:                 0;
+    transition:              opacity var(--dur-normal) ease;
 }
 
 .input-list__field:focus {
-    border-color: var(--border-focus);
+    border-color:            var(--border-focus);
 }
 
 .input-list__field:focus::placeholder {
-    opacity: 0.5;
+    opacity:                 0.5;
 }
 
 .input-list__label {
-    background: var(--surface);
-    color: var(--text-muted);
-    font-size: var(--font-size-1);
-    left: 12px;
-    padding: 0 4px;
-    pointer-events: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: all var(--dur-normal) ease;
+    background:              var(--surface);
+    color:                   var(--text-muted);
+    font-size:               var(--font-size-1);
+    left:                    12px;
+    padding:                 0 4px;
+    pointer-events:          none;
+    position:                absolute;
+    top:                     50%;
+    transform:               translateY(-50%);
+    transition:              all var(--dur-normal) ease;
 }
 
 .input-list--has-value .input-list__label,
 .input-list__field:focus + .input-list__label {
-    color: var(--border-focus);
-    top: 0;
-    transform: translateY(-50%) scale(0.85);
+    color:                   var(--border-focus);
+    top:                     0;
+    transform:               translateY(-50%) scale(0.85);
 }
 
 .input-list__items {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-top: 8px;
-    width: 100%;
+    display:                 flex;
+    flex-direction:          column;
+    gap:                     4px;
+    margin-top:              8px;
+    width:                   100%;
 }
 
 .input-list__item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    box-sizing: border-box;
-    color: var(--brand);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-1);
-    padding: 8px 12px;
-    width: 100%;
+    background:              var(--surface);
+    border:                  1px solid var(--border);
+    border-radius:           var(--radius);
+    box-sizing:              border-box;
+    color:                   var(--brand);
+    font-family:             var(--font-mono);
+    font-size:               var(--font-size-1);
+    padding:                 8px 12px;
+    width:                   100%;
 }
 
 .input-list--error .input-list__field {
-    border-color: var(--danger);
+    border-color:            var(--danger);
 }
 
 .input-list--error .input-list__label {
-    color: var(--danger);
+    color:                   var(--danger);
 }
 
 .input-list--disabled .input-list__field {
-    cursor: not-allowed;
-    opacity: 0.5;
+    cursor:                  not-allowed;
+    opacity:                 0.5;
 }
 
 /* =========================================
    CHECKBOX
    ========================================= */
 .checkbox {
-    align-items: center;
-    cursor: pointer;
-    display: inline-flex;
-    gap: 8px;
-    user-select: none;
+    align-items:             center;
+    cursor:                  pointer;
+    display:                 inline-flex;
+    gap:                     8px;
+    user-select:             none;
 }
 
 .checkbox__box {
-    align-items: center;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    display: flex;
-    height: 18px;
-    justify-content: center;
-    transition: all var(--dur-fast) ease;
-    width: 18px;
+    align-items:             center;
+    background:              var(--surface);
+    border:                  1px solid var(--border);
+    border-radius:           var(--radius);
+    display:                 flex;
+    height:                  18px;
+    justify-content:         center;
+    transition:              all var(--dur-fast) ease;
+    width:                   18px;
 }
 
 .checkbox--checked .checkbox__box {
-    background: var(--brand);
-    border-color: var(--brand);
+    background:              var(--brand);
+    border-color:            var(--brand);
 }
 
 .checkbox__check {
-    background: var(--on-brand);
-    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-    height: 10px;
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all var(--dur-fast) ease;
-    width: 10px;
+    background:              var(--on-brand);
+    clip-path:               polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+    height:                  10px;
+    opacity:                 0;
+    transform:               scale(0.5);
+    transition:              all var(--dur-fast) ease;
+    width:                   10px;
 }
 
 .checkbox--checked .checkbox__check {
-    opacity: 1;
-    transform: scale(1);
+    opacity:                 1;
+    transform:               scale(1);
 }
 
 .checkbox__label {
-    color: var(--brand);
-    font-size: var(--font-size-1);
+    color:                   var(--brand);
+    font-size:               var(--font-size-1);
 }
 
 .checkbox--disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-    pointer-events: none;
+    cursor:                  not-allowed;
+    opacity:                 0.5;
+    pointer-events:          none;
 }
 
 /* =========================================
    COMBOBOX
    ========================================= */
 .combo {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 100%;
+    display:                 flex;
+    flex-direction:          column;
+    gap:                     6px;
+    width:                   100%;
 }
 
 .combo__label {
-    color: var(--text-muted);
-    font-size: 12px;
-    text-transform: uppercase;
+    color:                   var(--text-muted);
+    font-size:               12px;
+    text-transform:          uppercase;
 }
 
 .combo__select {
-    appearance: none;
-    background: var(--surface);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-position: right 12px center;
-    background-repeat: no-repeat;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--brand);
-    cursor: pointer;
-    font-family: var(--font-mono);
-    font-size: var(--font-size-1);
-    outline: none;
-    padding: 8px 12px;
-    padding-right: 32px;
+    appearance:              none;
+    background:              var(--surface);
+    background-image:        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-position:     right 12px center;
+    background-repeat:       no-repeat;
+    border:                  1px solid var(--border);
+    border-radius:           var(--radius);
+    color:                   var(--brand);
+    cursor:                  pointer;
+    font-family:             var(--font-mono);
+    font-size:               var(--font-size-1);
+    outline:                 none;
+    padding:                 8px 12px;
+    padding-right:           32px;
 }
 
 .combo__select:focus {
-    border-color: var(--border-focus);
+    border-color:            var(--border-focus);
 }
 
 .combo--disabled .combo__select {
-    cursor: not-allowed;
-    opacity: 0.5;
+    cursor:                  not-allowed;
+    opacity:                 0.5;
 }
