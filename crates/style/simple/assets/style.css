@@ -128,7 +128,7 @@ body {
     font-family: var(--font-mono);
     font-size: var(--font-size-1);
     outline: none;
-    transition: opacity var(--dur-normal) ease;
+    transition: border-color var(--dur-normal) ease;
     box-sizing: border-box;
 }
 
@@ -138,7 +138,7 @@ body {
 }
 
 .input__field:focus {
-    border: 1px solid var(--brand) ;
+    border-color: var(--brand);
 }
 
 .input__field:focus::placeholder {
