@@ -5,6 +5,8 @@ fmt:
     cargo sort -w --grouped                                         > /tmp/fmt.log 2>&1 || { cat /tmp/fmt.log; exit 1; }
     cargo sort-derives --order "Debug,...,Deserialize,Serialize"    > /tmp/fmt.log 2>&1 || { cat /tmp/fmt.log; exit 1; }
     cargo +nightly fmt                                              > /tmp/fmt.log 2>&1 || { cat /tmp/fmt.log; exit 1; }
+    dx fmt                                                          > /tmp/fmt.log 2>&1 || { cat /tmp/fmt.log; exit 1; }
+    biome format --write                                            > /tmp/fmt.log 2>&1 || { cat /tmp/fmt.log; exit 1; }
 
 stat:
     git ls-files "crates/*.rs" | xargs wc -l | tail -1

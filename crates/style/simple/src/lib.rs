@@ -73,10 +73,7 @@ pub fn InputField(props: InputFieldProps) -> Element {
             }
 
             if !label.is_empty() {
-                label {
-                    class: "input__label",
-                    "{label}"
-                }
+                label { class: "input__label", "{label}" }
             }
 
             if let Some(err) = props.error.clone() {

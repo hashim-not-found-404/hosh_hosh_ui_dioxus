@@ -1,0 +1,30 @@
+{
+    "$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
+    "formatter": {
+        "enabled": true,
+        "indentStyle": "space",
+        "indentWidth": 4
+    },
+    "css": {
+        "formatter": {
+            "enabled": true,
+            "quoteStyle": "double"
+        }
+    },
+    "assist": {
+        "enabled": true,
+        "actions": {
+            "source": {
+                "useSortedProperties": "on"
+            }
+        }
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "nursery": {
+                "useTailwindSortedClasses": "on"
+            }
+        }
+    }
+}

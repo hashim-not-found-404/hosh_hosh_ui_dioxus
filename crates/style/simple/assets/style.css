@@ -1,25 +1,27 @@
 :root {
-    --brand:            #ffffff;
-    --on-brand:         #000000;
-    --danger:           #ff4d4f;
-    --surface:          #141414;
-    --surface-hover:    #1f1f1f;
-    --border:           #333333;
-    --border-focus:     #ffffff;
-    --text-muted:       #888888;
+    --brand: #ffffff;
+    --on-brand: #000000;
+    --danger: #ff4d4f;
+    --surface: #141414;
+    --surface-hover: #1f1f1f;
+    --border: #333333;
+    --border-focus: #ffffff;
+    --text-muted: #888888;
 
-    --font-size-1:      16px;
-    --font-size-2:      12px;
-    --font-mono:        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-size-1: 16px;
+    --font-size-2: 12px;
+    --font-mono:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
 
-    --dur-fast:         0.1s;
-    --dur-normal:       0.2s;
-    --radius:           4px;
+    --dur-fast: 0.1s;
+    --dur-normal: 0.2s;
+    --radius: 4px;
 }
 
 body {
-    background: var(--on-brand);
     color: var(--brand);
+    background: var(--on-brand);
     margin: 0;
     min-height: 100vh;
     font-family: var(--font-mono);
@@ -48,7 +50,9 @@ body {
 }
 
 .btn:focus-visible {
-    box-shadow: 0 0 0 2px var(--on-brand), 0 0 0 4px var(--brand);
+    box-shadow:
+        0 0 0 2px var(--on-brand),
+        0 0 0 4px var(--brand);
 }
 
 .btn--disabled {
@@ -159,7 +163,7 @@ body {
     padding: 0 4px;
 }
 
-.input__error-label{
+.input__error-label {
     font-size: var(--font-size-2);
     color: var(--danger);
 }
