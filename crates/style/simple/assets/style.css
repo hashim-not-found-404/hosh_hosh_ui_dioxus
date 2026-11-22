@@ -14,7 +14,7 @@
         "Liberation Mono", "Courier New", monospace;
     --dur-fast:              0.1s;
     --dur-normal:            0.2s;
-    --radius:                4px;
+    --radius:                8px;
 }
 
 body {
