@@ -98,23 +98,34 @@ pub fn InputFieldWithList<const N: usize>(props: InputFieldWithListProps<N>) -> 
     let has_value = !value.is_empty();
 
     rsx! {
-        div {
-            class: "input-list",
-            class: if has_value { "input-list--has-value" },
-            class: if props.error.is_some() { "input-list--error" },
-            class: if props.disabled { "input-list--disabled" },
+        div { class: "input", class: if props.disabled { "input--disabled" },
 
-            input {
-                class: "input-list__field",
-                r#type: "text",
-                placeholder: "{placeholder}",
-                value: "{value}",
-                disabled: props.disabled,
-                oninput: props.oninput,
+            div { class: "input__control",
+                input {
+                    class: "input__field",
+                    class: if has_value { "input__field--has-value" },
+                    class: if props.error.is_some() { "input__field--error" },
+                    r#type: "text",
+                    placeholder: "{placeholder}",
+                    value: "{value}",
+                    disabled: props.disabled,
+                    oninput: props.oninput,
+                }
+
+                if !label.is_empty() {
+                    label {
+                        class: "input__label",
+                        class: if has_value { "input__label--has-value" },
+                        class: if props.error.is_some() { "input__label--error" },
+                        "{label}"
+                    }
+                }
             }
 
-            if !label.is_empty() {
-                label { class: "input-list__label", "{label}" }
+            if let Some(err) = props.error.clone() {
+                if !err.is_empty() {
+                    label { class: "input__error-label", "{err}" }
+                }
             }
 
             if !props.list.is_empty() && !props.disabled {
