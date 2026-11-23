@@ -200,90 +200,35 @@ body {
 /* =========================================
    INPUT FIELD WITH LIST
    ========================================= */
-.input-list {
-    margin-bottom:           16px;
-    position:                relative;
-    width:                   100%;
-}
 
-.input-list__field {
+.input__dropdown {
     background:              var(--on-brand);
-    border:                  1px solid var(--border);
+    border:                  1px solid var(--brand);
     border-radius:           var(--radius);
     box-sizing:              border-box;
-    color:                   var(--brand);
-    font-family:             var(--font-mono);
-    font-size:               var(--font-size-1);
-    outline:                 none;
-    padding:                 20px 12px 8px;
-    transition:              border-color var(--dur-normal) ease;
-    width:                   100%;
-}
-
-.input-list__field::placeholder {
-    opacity:                 0;
-    transition:              opacity var(--dur-normal) ease;
-}
-
-.input-list__field:focus {
-    border-color:            var(--brand);
-}
-
-.input-list__field:focus::placeholder {
-    opacity:                 0.5;
-}
-
-.input-list__label {
-    background:              var(--on-brand);
-    color:                   var(--text-muted);
-    font-size:               var(--font-size-1);
-    left:                    12px;
-    padding:                 0 4px;
-    pointer-events:          none;
+    left:                    0;
+    margin-top:              4px;
+    max-height:              240px;
+    overflow-y:              auto;
     position:                absolute;
-    top:                     50%;
-    transform:               translateY(-50%);
-    transition:              all var(--dur-normal) ease;
+    right:                   0;
+    top:                     100%;
+    z-index:                 10;
 }
 
-.input-list--has-value .input-list__label,
-.input-list__field:focus + .input-list__label {
-    color:                   var(--brand);
-    top:                     0;
-    transform:               translateY(-50%) scale(0.85);
-}
-
-.input-list__items {
+.input__dropdown-item {
+    cursor:                  pointer;
     display:                 flex;
-    flex-direction:          column;
-    gap:                     4px;
-    margin-top:              8px;
-    width:                   100%;
-}
-
-.input-list__item {
-    background:              var(--on-brand);
-    border:                  1px solid var(--border);
-    border-radius:           var(--radius);
-    box-sizing:              border-box;
-    color:                   var(--brand);
-    font-family:             var(--font-mono);
-    font-size:               var(--font-size-1);
+    gap:                     8px;
     padding:                 8px 12px;
-    width:                   100%;
 }
 
-.input-list--error .input-list__field {
-    border-color:            var(--danger);
+.input__dropdown-item:hover {
+    background:              color-mix(in srgb, var(--brand) 15%, transparent);
 }
 
-.input-list--error .input-list__label {
-    color:                   var(--danger);
-}
-
-.input-list--disabled .input-list__field {
-    cursor:                  not-allowed;
-    opacity:                 0.5;
+.input__dropdown-part:not(:first-child) {
+    color:                   color-mix(in srgb, var(--brand) 70%, transparent);
 }
 
 /* =========================================

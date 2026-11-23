@@ -14,6 +14,11 @@ fn App() -> Element {
     let mut check2 = use_signal(|| true);
     let combo_val = use_signal(|| Some(1usize));
 
+    let list = vec![
+        ["Rust".to_string(), "Web".to_string()],
+        ["Dioxus".to_string(), "UI".to_string()],
+    ];
+
     rsx! {
         StyleInjector {}
 
@@ -68,11 +73,9 @@ fn App() -> Element {
                 label: "Tags",
                 value: list_input(),
                 placeholder: "Add tag",
-                list: vec![
-                    ["Rust".to_string(), "Web".to_string()],
-                    ["Dioxus".to_string(), "UI".to_string()],
-                ],
+                list: list.clone(),
                 oninput: move |e: Event<FormData>| list_input.set(e.value()),
+                onselect: move |e: usize| list_input.set(list[e][0].clone()),
             }
             InputFieldWithList::<1> {
                 label: "Disabled List",

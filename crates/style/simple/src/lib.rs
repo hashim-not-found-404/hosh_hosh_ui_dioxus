@@ -92,10 +92,13 @@ pub fn InputField(props: InputFieldProps) -> Element {
 
 #[component]
 pub fn InputFieldWithList<const N: usize>(props: InputFieldWithListProps<N>) -> Element {
+    let mut open = use_signal(|| false);
+
     let value = props.value.clone();
     let placeholder = props.placeholder.clone();
     let label = props.label.clone();
     let has_value = !value.is_empty();
+    let show_list = open() && !props.list.is_empty() && !props.disabled;
 
     rsx! {
         div { class: "input", class: if props.disabled { "input--disabled" },
@@ -109,7 +112,17 @@ pub fn InputFieldWithList<const N: usize>(props: InputFieldWithListProps<N>) -> 
                     placeholder: "{placeholder}",
                     value: "{value}",
                     disabled: props.disabled,
-                    oninput: props.oninput,
+                    oninput: move |e| {
+                        open.set(true);
+                        props.oninput.call(e);
+                    },
+                    onfocus: move |_| open.set(true),
+                    onblur: move |_| open.set(false),
+                    onkeydown: move |e: KeyboardEvent| {
+                        if e.key() == Key::Escape {
+                            open.set(false);
+                        }
+                    },
                 }
 
                 if !label.is_empty() {
@@ -120,23 +133,33 @@ pub fn InputFieldWithList<const N: usize>(props: InputFieldWithListProps<N>) -> 
                         "{label}"
                     }
                 }
+
+                if show_list {
+                    div { class: "input__dropdown",
+                        for (index, item) in props.list.iter().enumerate() {
+                            div {
+                                class: "input__dropdown-item",
+                                // mousedown fires before the input's blur, so the
+                                // click isn't lost; prevent_default keeps focus.
+                                onmousedown: {
+                                    move |e: MouseEvent| {
+                                        e.prevent_default();
+                                        props.onselect.call(index);
+                                        open.set(false);
+                                    }
+                                },
+                                for part in item.iter() {
+                                    span { class: "input__dropdown-part", "{part}" }
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             if let Some(err) = props.error.clone() {
                 if !err.is_empty() {
                     label { class: "input__error-label", "{err}" }
-                }
-            }
-
-            if !props.list.is_empty() && !props.disabled {
-                div { class: "input-list__items",
-                    for item in props.list {
-                        div { class: "input-list__item",
-                            for part in item {
-                                "{part} "
-                            }
-                        }
-                    }
                 }
             }
         }

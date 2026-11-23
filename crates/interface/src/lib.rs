@@ -66,6 +66,8 @@ pub struct InputFieldWithListProps<const N: usize> {
     pub disabled: bool,
     #[props(default)]
     pub oninput: EventHandler<FormEvent>,
+    #[props(default)]
+    pub onselect: EventHandler<usize>,
 }
 
 #[derive(Clone, PartialEq, Props)]
