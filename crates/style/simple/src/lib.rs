@@ -93,6 +93,7 @@ pub fn InputField(props: InputFieldProps) -> Element {
 #[component]
 pub fn InputFieldWithList<const N: usize>(props: InputFieldWithListProps<N>) -> Element {
     let mut open = use_signal(|| false);
+    let cols = N;
 
     let value = props.value.clone();
     let placeholder = props.placeholder.clone();
@@ -135,18 +136,16 @@ pub fn InputFieldWithList<const N: usize>(props: InputFieldWithListProps<N>) -> 
                 }
 
                 if show_list {
-                    div { class: "input__dropdown",
+                    div {
+                        class: "input__dropdown",
+                        style: "grid-template-columns: repeat({cols}, auto);",
                         for (index, item) in props.list.iter().enumerate() {
                             div {
                                 class: "input__dropdown-item",
-                                // mousedown fires before the input's blur, so the
-                                // click isn't lost; prevent_default keeps focus.
-                                onmousedown: {
-                                    move |e: MouseEvent| {
-                                        e.prevent_default();
-                                        props.onselect.call(index);
-                                        open.set(false);
-                                    }
+                                onmousedown: move |e: MouseEvent| {
+                                    e.prevent_default();
+                                    props.onselect.call(index);
+                                    open.set(false);
                                 },
                                 for part in item.iter() {
                                     span { class: "input__dropdown-part", "{part}" }

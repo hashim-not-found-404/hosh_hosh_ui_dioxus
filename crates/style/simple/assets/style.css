@@ -206,25 +206,43 @@ body {
     border:                  1px solid var(--brand);
     border-radius:           var(--radius);
     box-sizing:              border-box;
+    display:                 grid;
     left:                    0;
     margin-top:              4px;
     max-height:              240px;
-    overflow-y:              auto;
+    overflow:                hidden auto;
     position:                absolute;
     right:                   0;
     top:                     100%;
     z-index:                 10;
 }
 
+/* each row spans all columns and reuses the parent's column tracks,
+    so cells line up vertically across rows */
 .input__dropdown-item {
     cursor:                  pointer;
-    display:                 flex;
-    gap:                     8px;
-    padding:                 8px 12px;
+    display:                 grid;
+    grid-column:             1 / -1;
+    grid-template-columns:   subgrid;
 }
 
 .input__dropdown-item:hover {
     background:              color-mix(in srgb, var(--brand) 15%, transparent);
+}
+
+.input__dropdown-part {
+    overflow:                hidden;
+    padding:                 8px 12px;
+    text-overflow:           ellipsis;
+    white-space:             nowrap;
+}
+
+.input__dropdown-part:last-child {
+    border-right:            none;
+}
+
+.input__dropdown-item:last-child .input__dropdown-part {
+    border-bottom:           none;
 }
 
 .input__dropdown-part:not(:first-child) {
