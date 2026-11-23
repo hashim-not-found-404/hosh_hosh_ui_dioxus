@@ -149,6 +149,10 @@ body {
     border-color:            var(--danger);
 }
 
+.input__field--has-value {
+    opacity:                 1;
+}
+
 .input__label {
     background:              var(--on-brand);
     color:                   var(--brand);
@@ -167,16 +171,25 @@ body {
     color:                   var(--danger);
 }
 
+.input__label--has-value {
+    opacity:                 1;
+    top:                     0;
+    transform:               translateY(-50%) scale(0.85);
+}
+
 .input__error-label {
     color:                   var(--danger);
     font-size:               var(--font-size-2);
 }
 
-.input--has-value .input__label,
 .input__field:focus + .input__label {
     opacity:                 1;
     top:                     0;
     transform:               translateY(-50%) scale(0.85);
+}
+
+.input__control {
+    position:                relative;
 }
 
 .input--disabled {

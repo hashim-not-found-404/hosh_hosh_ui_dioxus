@@ -57,26 +57,27 @@ pub fn InputField(props: InputFieldProps) -> Element {
     let has_value = !value.is_empty();
 
     rsx! {
-        div {
-            class: "input",
-            class: if has_value { "input--has-value" },
-            class: if props.disabled { "input--disabled" },
+        div { class: "input", class: if props.disabled { "input--disabled" },
 
-            input {
-                class: "input__field",
-                class: if props.error.is_some() { "input__field--error" },
-                r#type: "text",
-                placeholder: "{placeholder}",
-                value: "{value}",
-                disabled: props.disabled,
-                oninput: props.oninput,
-            }
+            div { class: "input__control",
+                input {
+                    class: "input__field",
+                    class: if has_value { "input__field--has-value" },
+                    class: if props.error.is_some() { "input__field--error" },
+                    r#type: "text",
+                    placeholder: "{placeholder}",
+                    value: "{value}",
+                    disabled: props.disabled,
+                    oninput: props.oninput,
+                }
 
-            if !label.is_empty() {
-                label {
-                    class: "input__label",
-                    class: if props.error.is_some() { "input__label--error" },
-                    "{label}"
+                if !label.is_empty() {
+                    label {
+                        class: "input__label",
+                        class: if has_value { "input__label--has-value" },
+                        class: if props.error.is_some() { "input__label--error" },
+                        "{label}"
+                    }
                 }
             }
 

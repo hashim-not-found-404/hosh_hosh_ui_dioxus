@@ -55,10 +55,10 @@ fn App() -> Element {
             }
             InputField {
                 label: "With Error",
-                value: "bad_value".to_string(),
+                value: name(),
                 placeholder: "Error state",
                 error: Some("This field is invalid".to_string()),
-                oninput: move |_| {},
+                oninput: move |e: Event<FormData>| name.set(e.value()),
             }
 
             h2 { style: "margin: 0; color: #fff; font-family: var(--font-mono);",
