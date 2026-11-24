@@ -2,8 +2,6 @@
     --brand:                 #ffffff;
     --on-brand:              #000000;
     --danger:                #ff0000;
-    --border:                #333333;
-    --text-muted:            #888888;
     --font-size-1:           16px;
     --font-size-2:           12px;
     --font-mono:
@@ -307,40 +305,97 @@ body {
    COMBOBOX
    ========================================= */
 .combo {
-    display:                 flex;
-    flex-direction:          column;
-    gap:                     6px;
+    /*margin-bottom:           16px;*/
     width:                   100%;
 }
 
-.combo__label {
-    color:                   var(--text-muted);
-    font-size:               12px;
-    text-transform:          uppercase;
+.combo__control {
+    position:                relative;
+}
+
+.combo__control::after {
+    border-bottom:           1px solid var(--brand);
+    border-right:            1px solid var(--brand);
+    content:                 "";
+    height:                  6px;
+    margin-top:              -6px;
+    pointer-events:          none;
+    position:                absolute;
+    right:                   16px;
+    top:                     50%;
+    transform:               rotate(45deg);
+    transition:              transform var(--dur-normal) ease;
+    width:                   6px;
+}
+
+.combo__control:focus-within::after {
+    margin-top:              -2px;
+    transform:               rotate(225deg);
 }
 
 .combo__select {
     appearance:              none;
     background:              var(--on-brand);
-    background-image:        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-position:     right 12px center;
-    background-repeat:       no-repeat;
-    border:                  1px solid var(--border);
+    border:                  1px solid color-mix(in srgb, var(--brand) 50%, transparent);
     border-radius:           var(--radius);
+    box-sizing:              border-box;
     color:                   var(--brand);
     cursor:                  pointer;
     font-family:             var(--font-mono);
     font-size:               var(--font-size-1);
     outline:                 none;
-    padding:                 8px 12px;
-    padding-right:           32px;
+    padding:                 12px 40px 12px 12px;
+    transition:              border-color var(--dur-normal) ease;
+    width:                   100%;
 }
 
 .combo__select:focus {
     border-color:            var(--brand);
 }
 
-.combo--disabled .combo__select {
+.combo__select option {
+    background:              var(--on-brand);
+    color:                   var(--brand);
+}
+
+.combo__select--error {
+    border-color:            color-mix(in srgb, var(--danger) 50%, transparent);
+}
+
+.combo__select--error:focus {
+    border-color:            var(--danger);
+}
+
+.combo__label {
+    background:              var(--on-brand);
+    color:                   var(--brand);
+    font-size:               var(--font-size-1);
+    left:                    12px;
+    opacity:                 0.5;
+    padding:                 0 4px;
+    pointer-events:          none;
+    position:                absolute;
+    top:                     50%;
+    transform:               translateY(-50%);
+    transition:              all var(--dur-normal) ease;
+}
+
+.combo__label--error {
+    color:                   var(--danger);
+}
+
+.combo__label--has-value,
+.combo__select:focus + .combo__label {
+    opacity:                 1;
+    top:                     0;
+    transform:               translateY(-50%) scale(0.85);
+}
+
+.combo--disabled {
     cursor:                  not-allowed;
     opacity:                 0.5;
+}
+
+.combo--disabled .combo__select {
+    cursor:                  not-allowed;
 }

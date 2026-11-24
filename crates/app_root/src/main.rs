@@ -114,6 +114,12 @@ fn App() -> Element {
                 onclick: move |_| {},
             }
             ComboBox {
+                label: "Select Option",
+                value: None,
+                list: vec!["Option A".to_string(), "Option B".to_string(), "Option C".to_string()],
+                onclick: move |_| {},
+            }
+            ComboBox {
                 label: "Disabled Combo",
                 value: Some(0),
                 list: vec!["Only One".to_string()],

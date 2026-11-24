@@ -93,8 +93,12 @@ pub struct ComboBoxProps {
     #[props(default)]
     pub label: String,
 
+    #[props(default)]
+    pub error: Option<String>,
+
     #[props(default = false)]
     pub disabled: bool,
+
     #[props(default)]
     pub onclick: EventHandler<MouseEvent>,
 }

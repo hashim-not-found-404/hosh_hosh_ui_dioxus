@@ -191,23 +191,45 @@ pub fn CheckBox(props: CheckBoxProps) -> Element {
 
 #[component]
 pub fn ComboBox(props: ComboBoxProps) -> Element {
-    let value_name = props.value.map(|v| v.to_string()).unwrap_or_default();
+    let has_value = props.value.is_some();
+    let selected = props.value.map(|v| v.to_string()).unwrap_or_default();
 
     rsx! {
         div { class: "combo", class: if props.disabled { "combo--disabled" },
 
-            if !props.label.is_empty() {
-                label { class: "combo__label", "{props.label}" }
+            div { class: "combo__control",
+                select {
+                    class: "combo__select",
+                    class: if props.error.is_some() { "combo__select--error" },
+                    disabled: props.disabled,
+                    onclick: props.onclick,
+                    value: "{selected}",
+
+                    // empty placeholder so nothing is pre-selected when value is None
+                    option {
+                        class: "combo__item",
+                        value: "", hidden: true, disabled: true, selected: !has_value }
+
+                    for (i, item) in props.list.iter().enumerate() {
+                        option {
+                            class: "combo__item",
+                            value: "{i}", selected: props.value == Some(i), "{item}" }
+                    }
+                }
+
+                if !props.label.is_empty() {
+                    label {
+                        class: "combo__label",
+                        class: if has_value { "combo__label--has-value" },
+                        class: if props.error.is_some() { "combo__label--error" },
+                        "{props.label}"
+                    }
+                }
             }
 
-            select {
-                class: "combo__select",
-                disabled: props.disabled,
-                onclick: props.onclick,
-                value: "{value_name}",
-
-                for (i, item) in props.list.iter().enumerate() {
-                    option { value: "{i}", selected: props.value == Some(i), "{item}" }
+            if let Some(err) = props.error.clone() {
+                if !err.is_empty() {
+                    label { class: "input__error-label", "{err}" }
                 }
             }
         }
