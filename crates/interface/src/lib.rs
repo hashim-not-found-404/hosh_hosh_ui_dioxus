@@ -100,5 +100,5 @@ pub struct ComboBoxProps {
     pub disabled: bool,
 
     #[props(default)]
-    pub onclick: EventHandler<MouseEvent>,
+    pub onselect: EventHandler<usize>,
 }

@@ -191,30 +191,39 @@ pub fn CheckBox(props: CheckBoxProps) -> Element {
 
 #[component]
 pub fn ComboBox(props: ComboBoxProps) -> Element {
+    let mut open = use_signal(|| false);
+
     let has_value = props.value.is_some();
-    let selected = props.value.map(|v| v.to_string()).unwrap_or_default();
+    let selected_text = props
+        .value
+        .and_then(|i| props.list.get(i).cloned())
+        .unwrap_or_default();
+    let show_list = open() && !props.disabled && !props.list.is_empty();
 
     rsx! {
         div { class: "combo", class: if props.disabled { "combo--disabled" },
 
             div { class: "combo__control",
-                select {
+                div {
                     class: "combo__select",
                     class: if props.error.is_some() { "combo__select--error" },
-                    disabled: props.disabled,
-                    onclick: props.onclick,
-                    value: "{selected}",
-
-                    // empty placeholder so nothing is pre-selected when value is None
-                    option {
-                        class: "combo__item",
-                        value: "", hidden: true, disabled: true, selected: !has_value }
-
-                    for (i, item) in props.list.iter().enumerate() {
-                        option {
-                            class: "combo__item",
-                            value: "{i}", selected: props.value == Some(i), "{item}" }
-                    }
+                    role: "combobox",
+                    tabindex: if props.disabled { "-1" } else { "0" },
+                    onclick: move |_| {
+                        if !props.disabled {
+                            open.set(!open());
+                        }
+                    },
+                    onblur: move |_| open.set(false),
+                    onkeydown: move |e: KeyboardEvent| {
+                        match e.key() {
+                            Key::Escape => open.set(false),
+                            Key::Enter => open.set(!open()),
+                            Key::Character(c) if c == " " => open.set(!open()),
+                            _ => {}
+                        }
+                    },
+                    "{selected_text}"
                 }
 
                 if !props.label.is_empty() {
@@ -223,6 +232,24 @@ pub fn ComboBox(props: ComboBoxProps) -> Element {
                         class: if has_value { "combo__label--has-value" },
                         class: if props.error.is_some() { "combo__label--error" },
                         "{props.label}"
+                    }
+                }
+
+                if show_list {
+                    div { class: "combo__list",
+                        for (i, item) in props.list.iter().enumerate() {
+                            div {
+                                class: "combo__item",
+                                class: if props.value == Some(i) { "combo__item--selected" },
+                                // mousedown fires before blur, so the choice isn't lost
+                                onmousedown: move |e: MouseEvent| {
+                                    e.prevent_default();
+                                    props.onselect.call(i);
+                                    open.set(false);
+                                },
+                                "{item}"
+                            }
+                        }
                     }
                 }
             }

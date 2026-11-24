@@ -13,6 +13,7 @@ fn App() -> Element {
     let mut check1 = use_signal(|| false);
     let mut check2 = use_signal(|| true);
     let combo_val = use_signal(|| Some(1usize));
+    let mut choice = use_signal(|| None::<usize>);
 
     let list = vec![
         ["Rust".to_string(), "Web".to_string()],
@@ -108,23 +109,26 @@ fn App() -> Element {
 
             h2 { style: "margin: 0; color: #fff; font-family: var(--font-mono);", "ComboBox" }
             ComboBox {
+                label: "Role",
+                value: choice(),
+                list: vec!["Admin".to_string(), "Editor".to_string(), "Viewer".to_string()],
+                onselect: move |i: usize| choice.set(Some(i)),
+            }
+            ComboBox {
                 label: "Select Option",
                 value: combo_val(),
                 list: vec!["Option A".to_string(), "Option B".to_string(), "Option C".to_string()],
-                onclick: move |_| {},
             }
             ComboBox {
                 label: "Select Option",
                 value: None,
                 list: vec!["Option A".to_string(), "Option B".to_string(), "Option C".to_string()],
-                onclick: move |_| {},
             }
             ComboBox {
                 label: "Disabled Combo",
                 value: Some(0),
                 list: vec!["Only One".to_string()],
                 disabled: true,
-                onclick: move |_| {},
             }
         }
     }

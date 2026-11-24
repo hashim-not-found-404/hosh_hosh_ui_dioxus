@@ -305,7 +305,7 @@ body {
    COMBOBOX
    ========================================= */
 .combo {
-    /*margin-bottom:           16px;*/
+    margin-bottom:           16px;
     width:                   100%;
 }
 
@@ -314,8 +314,8 @@ body {
 }
 
 .combo__control::after {
-    border-bottom:           1px solid var(--brand);
-    border-right:            1px solid var(--brand);
+    border-bottom:           2px solid var(--brand);
+    border-right:            2px solid var(--brand);
     content:                 "";
     height:                  6px;
     margin-top:              -6px;
@@ -334,7 +334,6 @@ body {
 }
 
 .combo__select {
-    appearance:              none;
     background:              var(--on-brand);
     border:                  1px solid color-mix(in srgb, var(--brand) 50%, transparent);
     border-radius:           var(--radius);
@@ -343,19 +342,20 @@ body {
     cursor:                  pointer;
     font-family:             var(--font-mono);
     font-size:               var(--font-size-1);
+    line-height:             1.2;
+    min-height:              calc(1.2em + 26px);
     outline:                 none;
+    overflow:                hidden;
     padding:                 12px 40px 12px 12px;
+    text-overflow:           ellipsis;
     transition:              border-color var(--dur-normal) ease;
+    user-select:             none;
+    white-space:             nowrap;
     width:                   100%;
 }
 
 .combo__select:focus {
     border-color:            var(--brand);
-}
-
-.combo__select option {
-    background:              var(--on-brand);
-    color:                   var(--brand);
 }
 
 .combo__select--error {
@@ -389,6 +389,40 @@ body {
     opacity:                 1;
     top:                     0;
     transform:               translateY(-50%) scale(0.85);
+}
+
+.combo__list {
+    background:              var(--on-brand);
+    border:                  1px solid var(--brand);
+    border-radius:           var(--radius);
+    box-sizing:              border-box;
+    left:                    0;
+    margin-top:              4px;
+    max-height:              240px;
+    overflow-y:              auto;
+    position:                absolute;
+    right:                   0;
+    top:                     100%;
+    z-index:                 10;
+}
+
+.combo__item {
+    cursor:                  pointer;
+    padding:                 8px 12px;
+}
+
+.combo__item:hover {
+    background:              color-mix(in srgb, var(--brand) 15%, transparent);
+}
+
+.combo__item--selected {
+    background:              var(--brand);
+    color:                   var(--on-brand);
+}
+
+.combo__item--selected:hover {
+    background:              var(--brand);
+    filter:                  brightness(0.75);
 }
 
 .combo--disabled {
